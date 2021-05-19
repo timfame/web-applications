@@ -1,10 +1,24 @@
-# clj.test
-
-A Clojure library designed to ... well, that part is up to you.
-
 ## Usage
 
-FIXME
+This app use Datomic Free with default settings. \
+To start Datomic Free you can follow my instructions:
+- [Download the latest version](https://my.datomic.com/downloads/free)
+- `cd` to directory with extracted datomic free
+- run `bin/transactor ./config/samples/free-transactor-template.properties`
+this is a default properties, which will be enough to run application
+
+You can run this app with: \
+`java -jar testapp.jar` \
+Maybe you need to specify Java Maximum Heap Size. It must be 512m at least: \
+`java -Xmx512m -jar testapp.jar`
+
+If you don't want to use Datomic, you can use in-memory storage, but you won't be able to use jar to run application. \
+Go to `src-clj/core.clj`, to the bottom of the file, where you can find `-main` function. \
+Replace `(d-store/get-store {})` with `(a-store/get-store)`, and now the app will use in-memory storage.
+
+To run app manually, you need to run 2 commands:
+ - `lein with-profile dev cljsbuild once` to build JavaScript from ClojureScript
+ - `lein run` to start the server 
 
 ## License
 
